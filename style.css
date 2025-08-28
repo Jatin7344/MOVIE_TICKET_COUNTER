@@ -1,0 +1,196 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light gray background */
+    color: #333; /* Dark gray text color */
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+header img {
+    margin-right: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+nav a:hover {
+    color: #007bff; /* Blue on hover */
+}
+
+main {
+    padding: 20px;
+    text-align: center; /* Center the content */
+}
+
+h1, h2 {
+    color: #007bff; /* Blue headings */
+}
+
+hr {
+    border-top: 1px solid #ddd; /* Light gray horizontal line */
+    margin: 20px 0;
+}
+
+.movie-container {
+    display: flex;
+    justify-content: center; /* Center the movie containers horizontally */
+    gap: 20px; /* Space between movies */
+    margin-bottom: 20px;
+}
+
+.movie {
+    cursor: pointer;
+    transition: transform 0.2s; /* Smooth scaling on hover */
+}
+
+.movie img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px; /* Rounded corners for images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+}
+
+.movie p {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.movie:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.hidden {
+    display: none;
+}
+
+/* seats.css */
+body {
+    font-family: sans-serif;
+}
+
+.screen {
+    width: 80%;
+    height: 50px;
+    background-color: #ddd;
+    margin: 20px auto;
+    text-align: center;
+    line-height: 50px;
+    color: #555;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.seats {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 10px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.seat:hover {
+    background-color: #ddd;
+}
+
+.seat.selected {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.seat.occupied {
+    background-color: #aaa;
+    cursor: default;
+}
+
+#selected-seats {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#confirm-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#confirm-button:hover {
+    background-color: #218838;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed; /* Fixed to the bottom */
+    bottom: 0;
+    width: 100%;
+}
+
+form label, form input {
+    display: block; /* Make labels and inputs stack vertically */
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Full width with padding adjustment */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}

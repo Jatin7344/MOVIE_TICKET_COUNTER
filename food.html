@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PVR Food Window</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+    }
+
+    header {
+      background-color: #222;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    header nav ul li {
+      margin-left: 20px;
+    }
+
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    header nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .title-banner {
+      background-color: #ff4c4c;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+      flex-grow: 1;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .controls button {
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .add-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .add-btn:hover {
+      background: #218838;
+    }
+
+    .cart, .payment-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .cart h2, .payment-section h2 {
+      margin-top: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .total {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    button {
+        background-color: #ff4c4c;        /* PVR-style red */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      button:hover {
+        background-color: #d73838;       /* Darker on hover */
+      }
+      
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header with nav -->
+<header>
+  <img src="PVR CINEMAS (1).png" alt="PVR Logo">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="food.html">Snacks</a></li>
+      <li><a href="offers.html">Offers</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="title-banner">🍿 Order Your Favorite Snacks</div>
+
+<!-- Food Items Grid -->
+<div class="container" id="food-list"></div>
+
+<!-- Cart Section -->
+<div class="cart" id="cart-section">
+  <h2>🛒 Your Cart</h2>
+  <div id="cart-items"></div>
+  <div class="total">Total: ₹<span id="total-amount">0</span></div>
+</div>
+
+<!-- Payment Section -->
+<div class="payment-section">
+  <h2>🎟️ Delivery & Payment</h2>
+  <div class="form-group">
+    <label for="seat">Seat Number</label>
+    <input type="text" id="seat" placeholder="e.g., C12" required>
+  </div>
+  <div class="form-group">
+    <label for="address">Delivery Address (Optional)</label>
+    <input type="text" id="address" placeholder="Row 3, Near Entry">
+  </div>
+  <div class="form-group">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+  </div>
+  <div class="form-group">
+    <label for="payment-method">Payment Method</label>
+    <select id="payment-method" onchange="togglePaymentFields()">
+      <option value="upi">UPI</option>      
+    </select>
+  </div>
+
+  <div class="form-group" id="card-field">
+    <img src = "/QRscanner.jpg" alt="QR SCANNER" height =300> 
+    <button><a href="foodcompletepayment.html">submit </a></button>    
+  </div>
+
+  <div class="form-group" id="upi-field" style="display: none;">
+    <label for="upi">UPI ID</label>
+    <input type="text" id="upi" placeholder="yourname@upi">
+  </div>
+
+
+<script>
+  const foodItems = [
+    { id: 1, name: "Popcorn", price: 50, img: "popcorn.jpg" },
+    { id: 2, name: "Grilled Sandwich", price: 80, img: "sandwich.jpg" },
+    { id: 3, name: "Veg Burger", price: 70, img: "burger.jpg" },
+    { id: 4, name: "Cold Drink", price: 40, img: "cola.jpg" },
+    { id: 5, name: "Cheesy Pizza", price: 120, img: "pizza.jpg" },
+  ];
+
+  const cart = {};
+
+  const foodList = document.getElementById('food-list');
+  const cartItemsDiv = document.getElementById('cart-items');
+  const totalAmount = document.getElementById('total-amount');
+
+  foodItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.name}">
+      <div class="card-content">
+        <h3>${item.name}</h3>
+        <div class="price">₹${item.price}</div>
+        <div class="controls">
+          <button onclick="changeQty(${item.id}, -1)">−</button>
+          <span id="qty-${item.id}">0</span>
+          <button onclick="changeQty(${item.id}, 1)">+</button>
+        </div>
+        <button class="add-btn" onclick="addToCart(${item.id})">Add to Cart</button>
+      </div>
+    `;
+    foodList.appendChild(card);
+  });
+
+  function changeQty(id, delta) {
+    const qtySpan = document.getElementById(`qty-${id}`);
+    let qty = parseInt(qtySpan.innerText) || 0;
+    qty = Math.max(0, qty + delta);
+    qtySpan.innerText = qty;
+  }
+
+  function addToCart(id) {
+    const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
+    if (qty === 0) return alert("Quantity must be at least 1");
+
+    const item = foodItems.find(i => i.id === id);
+    cart[id] = {
+      ...item,
+      quantity: (cart[id]?.quantity || 0) + qty
+    };
+    document.getElementById(`qty-${id}`).innerText = 0;
+    renderCart();
+  }
+
+  function renderCart() {
+    cartItemsDiv.innerHTML = '';
+    let total = 0;
+
+    Object.values(cart).forEach(item => {
+      const lineTotal = item.price * item.quantity;
+      total += lineTotal;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <span>${item.name} x ${item.quantity}</span>
+        <span>₹${lineTotal}</span>
+      `;
+      cartItemsDiv.appendChild(div);
+    });
+
+    totalAmount.innerText = total;
+  }
+
+  function payNow() {
+    const name = document.getElementById('name').value.trim();
+    const card = document.getElementById('card').value.trim();
+    const seat = document.getElementById('seat').value.trim();
+
+    if (!name || !card || !seat) {
+      alert("Please fill all required fields (Name, Card, Seat).");
+      return;
+    }
+
+    if (Object.keys(cart).length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    alert(`🎉 Order confirmed for seat ${seat}. Thank you, ${name}!`);
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
